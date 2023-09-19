@@ -1,0 +1,11 @@
+.rainbow {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.rainbow .block {
+    background-color: hsl(1, 100%, 50%);
+    width: 20px;
+    height: 20px;
+    margin: 1px;
+}
