@@ -1,6 +1,6 @@
 <?php 
-//use include_once or require_once to load in an other php file
-
+//// use include_once or require_once to load in an other php file
+// echo "Dit is data.php";
 $cars = [
     [ 
         'brand' => 'Renault',
