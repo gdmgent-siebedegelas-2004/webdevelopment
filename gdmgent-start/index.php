@@ -9,7 +9,23 @@
 <body>
     <?php include_once 'includes/db.php';
     // print_r($db);
+        //2. Query schrijven
+        $sql = "SELECT * FROM db.projects";
+
+        //3. Query uitvoeren
+        $statement = $db->query($sql);
+
+        //4. Resultaat verwerken
+        $projects = $statement->fetchAll();
+
+        foreach($projects as $project){
+            include 'includes/detail.php';
+            // echo $project['title'];
+            // echo '<br>';
+        }
     ?>
+
+    
 <div class="projects">
     <div class="project">
         <h2>Project 1</h2>
