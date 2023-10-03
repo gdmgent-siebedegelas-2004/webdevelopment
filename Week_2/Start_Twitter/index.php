@@ -1,15 +1,23 @@
 <?php
     require 'includes/db.php';  
 
+    $search_string = $_GET['search_string'] ?? '';
+
     $sql = 'SELECT * 
             FROM `message` 
             INNER JOIN `users` ON `message`.`user_id` = `users`.`id`
+            WHERE `message` LIKE :search_string
             ORDER BY `created_on` DESC 
             LIMIT 25';
 
     $sql_statement = $db->prepare($sql);
-    $sql_statement->execute();
-    $messages = $sql_statement->fetchAll();
+    $sql_statement->execute(
+        [
+            ':search_string' => '%' . $search_string . '%'
+        ]
+    );
+    $messages = $sql_statement->fetchAll(); 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +30,7 @@
 <body>
 <div class="container">
     <div class="messages">
-        <form>
+        <form action="api/add_tweet.php" method="POST">
             <div class="message message-new">
             
                 <div class="avatar">JD</div>
@@ -31,6 +39,18 @@
                     <textarea name="tweet"></textarea>
                     <button type="submit">Tweet</button>
                 </div>
+            </div>
+        </form>
+
+        ﻿
+
+        <form>
+            <div class="search">
+                 <div class="content">
+
+                    <input value="<?= $search_string; ?>" name="search_string" placeholder="Zoekterm">
+                    <button type="submit">Zoeken</button>
+                </div>  
             </div>
         </form>
       <!-- PHP -->
