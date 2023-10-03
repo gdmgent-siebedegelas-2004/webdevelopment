@@ -1,14 +1,15 @@
 <?php
-    require 'includes/db.php';
+    require 'includes/db.php';  
 
-    $sql = 'SELECT * FROM `message`';
+    $sql = 'SELECT * 
+            FROM `message` 
+            INNER JOIN `users` ON `message`.`user_id` = `users`.`id`
+            ORDER BY `created_on` DESC 
+            LIMIT 25';
 
     $sql_statement = $db->prepare($sql);
     $sql_statement->execute();
     $messages = $sql_statement->fetchAll();
-
-    print_r($messages);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,20 +33,12 @@
                 </div>
             </div>
         </form>
-        <div class="message">
-            <div class="avatar"><img src="https://picsum.photos/id/1005/100/100"></div>
-            <div class="content">
-                <div class="info"><a href="#">Dieter De Weirdt</a> &bull; @deweirdt &bull; Donderdag 1 oktober 2020 11:20</div>
-                <div class="tweet">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae incidunt ipsam distinctio quam, quibusdam iure natus consequatur asperiores, expedita eos cumque eligendi sed perferendis voluptates culpa sunt, mollitia ipsa sapiente!</div>
-            </div>
-        </div>
-        <div class="message">
-            <div class="avatar"><img src="https://picsum.photos/id/237/100/100"></div>
-            <div class="content">
-                <div class="info"><a href="#">John Doe</a> &bull; @doe &bull; Donderdag 1 oktober 2020 11:03</div>
-                <div class="tweet">Hi</div>
-            </div>
-        </div>
+      <!-- PHP -->
+      <?php
+      foreach ($messages as $item) {
+        include 'views/message.php';
+      }
+      ?>
     </div>
 
 </div>
