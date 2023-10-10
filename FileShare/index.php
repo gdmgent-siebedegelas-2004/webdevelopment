@@ -1,3 +1,7 @@
+<?php
+$items = scandir(__DIR__ . '/uploads');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +32,14 @@
                 <div class="header">Size</div>
                 <div class="header">Created</div>
 
+                <?php forEach ($items as $item) : ?>
+                    <?php if ($item === '.' || $item === '..') continue; ?>
+                    <?php if (is_dir(__DIR__ . '/uploads/' . $item)) : ?>
+                        <div><a href="?folder=<?= $item ?>"><i class="fa fa-folder fa-fw"></i> <?= $item ?></a></div>
+                        <div></div>
+                        <div><?= date('d/m/Y H:i', filemtime(__DIR__ . '/uploads/' . $item)) ?></div>
+
+                    <?php endforeach; ?>
 
                 <div><a href="?folder=my_folder"><i class="fa fa-folder fa-fw"></i> my_folder</a></div>
                 <div></div>
