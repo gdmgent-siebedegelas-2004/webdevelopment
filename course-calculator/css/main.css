@@ -1,0 +1,96 @@
+/* FILEPATH: /c:/Users/Siebe/Creative Cloud Files/1__Webdevelopment_I/Repository/webdevelopment/course-calculator/css/main.css */
+
+/* Set background color to purple pastel */
+body {
+  background-color: #d1c4e9;
+}
+
+/* Style the form */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+/* Style the input fields */
+input[type="number"] {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ede7f6;
+}
+
+/* Style the select field */
+select {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ede7f6;
+}
+
+/* Style the calculate button */
+button {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ba68c8;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Style the calculate button on hover */
+button:hover {
+  background-color: #9c27b0;
+}
+
+/* Set background color to purple pastel */
+body {
+  background-color: #d1c4e9;
+}
+
+/* Style the scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ede7f6;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ba68c8;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #9c27b0;
+}
+
+/* Style the error popup */
+.error-popup {
+  color: #8b0000;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  background-color: #ffebee;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ffcdd2;
+}
+
+/* Style the outcome */
+.outcome {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  background-color: #ba68c8;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 50px;
+}
