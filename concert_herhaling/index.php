@@ -7,10 +7,10 @@
     <title>Concerts</title>
 </head>
 <body>
-    <h1>Concerten</h1>
+    <h1 class="main-title">Concerten</h1>
     <?php
-    //include 'data/concerts.php';
-    //print_r($concerts);
+    // include 'data/concerts.php';
+    // print_r($concerts);
     include 'includes/db.php';
 
     $sql = "SELECT concerts.*, artists.name AS artist, locations.name as location FROM concerts
@@ -18,28 +18,13 @@
     JOIN locations ON concerts.location_id = locations.location_id";
 
     $statement = $db->prepare($sql);
-    //bind
+    // bind
     $statement->execute();
     $concerts = $statement->fetchAll();
 
     foreach( $concerts as $key => $item ) {
-        //echo '<div>' . $item['artist'] . '</div>';
         include 'views/concert_item.php';
     } 
     ?>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
