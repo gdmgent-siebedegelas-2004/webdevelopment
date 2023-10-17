@@ -1,53 +1,58 @@
-/* Define styles for table */
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
+/* FILEPATH: /c:/Users/siebe/Creative Cloud Files/1__Webdevelopment_I/Repository/webdevelopment/concert_herhaling/css/main.css */
 
-th,
-td {
-  text-align: left;
-  padding: 8px;
-}
-
-th {
-  background-color: #4caf50;
-  color: white;
-}
-
-tr:nth-child(even) {
+/* Set body background color */
+body {
   background-color: #f2f2f2;
 }
 
-/* Define styles for form */
-form {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  margin: 0 auto;
+/* Set heading styles */
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+  color: #333;
 }
 
-label {
-  margin-bottom: 8px;
+/* Set concert item styles */
+.concert-item {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
-input[type="text"],
-select {
-  padding: 8px;
-  margin-bottom: 16px;
+/* Set artist name styles */
+.artist-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Set location name styles */
+.location-name {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Set date styles */
+.date {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Set button styles */
+.button {
+  background-color: #ffb6c1;
+  color: #fff;
   border: none;
-  border-radius: 4px;
-}
-
-input[type="submit"] {
-  background-color: #4caf50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
   cursor: pointer;
 }
 
-input[type="submit"]:hover {
-  background-color: #45a049;
+/* Set button hover styles */
+.button:hover {
+  background-color: #ff69b4;
 }
