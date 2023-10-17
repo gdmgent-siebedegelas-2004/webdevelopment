@@ -1,0 +1,51 @@
+/* Reset some default styles */
+body,
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f5f5f5; /* A light grayish background */
+  color: #333; /* Dark text color */
+  line-height: 1.6;
+  margin: 20px; /* Add margin to push content away from the sides */
+}
+
+h1.main-title {
+  font-size: 36px;
+  color: #9966cc; /* A pastel purple for the title */
+}
+
+/* Style the horizontal line */
+hr {
+  border: none;
+  height: 5px; /* A thicker line */
+  background: #99cc66; /* A pastel green for the line */
+}
+
+/* Style the content */
+.concert-item {
+  border: 1px solid #ddd; /* Light gray border for each item */
+  padding: 20px;
+  margin: 10px;
+  background-color: #fff; /* White background for each item */
+}
+
+/* Style links */
+a {
+  text-decoration: none;
+  color: #9966cc; /* Pastel purple for links */
+}
+
+a:hover {
+  color: #99cc66; /* Pastel green for links on hover */
+}
+
+/* Additional styles for better readability (optional) */
+p {
+  margin-bottom: 15px;
+}
+
+/* Add more styles as needed for specific elements in your HTML. */
