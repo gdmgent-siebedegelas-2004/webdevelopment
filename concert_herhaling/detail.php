@@ -1,4 +1,5 @@
 <?php
+include 'functions/concerts.php';
 include 'partials/header.php';
 $v_id = $_GET['q_id'];
 
@@ -29,5 +30,7 @@ if ($item) {
 } else {
     echo "Concert not found";
 }
+
+
 include 'partials/footer.php';
 ?>
