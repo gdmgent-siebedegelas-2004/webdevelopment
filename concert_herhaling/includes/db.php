@@ -1,5 +1,5 @@
 <?php
-
+include 'partials/header.php';
 CONST DB_DSN = 'mysql:dbname=db;host=db;port=3306';
 
 CONST DB_USER = 'root';

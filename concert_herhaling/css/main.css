@@ -49,3 +49,23 @@ p {
 }
 
 /* Add more styles as needed for specific elements in your HTML. */
+/* FILEPATH: /c:/Users/siebe/Creative Cloud Files/1__Webdevelopment_I/Repository/webdevelopment/css/main.css */
+
+/* Footer styles */
+footer {
+  background: #9966cc; /* Use the pastel purple color */
+  color: #fff; /* White text color */
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px; /* Add margin at the top to separate it from the content */
+}
+
+/* Link styles within the footer */
+footer a {
+  color: #99cc66; /* Use the pastel green color for links in the footer */
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

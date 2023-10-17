@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <title>Concerts</title>
-</head>
-<body>
-    <h1 class="main-title">Concerten</h1>
+   <?php
+    include 'partials/header.php';
+   ?>
+   <h1 class="main-title">Concerten</h1>
     <?php
+
     // include 'data/concerts.php';
     // print_r($concerts);
     include 'includes/db.php';
@@ -25,6 +20,7 @@
     foreach( $concerts as $key => $item ) {
         include 'views/concert_item.php';
     } 
+    include 'partials/footer.php';
     ?>
 </body>
 </html>

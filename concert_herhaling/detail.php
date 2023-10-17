@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <title>Concerts</title>
-</head>
-
 <?php
+include 'partials/header.php';
 $v_id = $_GET['q_id'];
 
 // include 'data/concerts.php';
@@ -37,4 +29,5 @@ if ($item) {
 } else {
     echo "Concert not found";
 }
+include 'partials/footer.php';
 ?>
