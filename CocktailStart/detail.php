@@ -1,4 +1,32 @@
+<?php
 
+    require_once __DIR__ . '/includes/db.php';
+
+    // id uit de querystring halen
+    $q_id = $_GET['cocktail_id'] ?? 0;
+    if (!$q_id) {
+        header('location:index.php');
+    }
+    
+    // cocktail ophalen uit DB
+    $sql = "SELECT * FROM cocktails WHERE id = :q_id";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(':q_id', $q_id);
+    $statement->execute();
+    $cocktail = $statement->fetchObject();
+
+
+    // cocktail ophalen uit DB
+    $sql = "SELECT * 
+    FROM cocktail_ingredient
+    JOIN ingredients 
+    ON cocktail_ingredient.`cocktail_id` = ingredients.id
+    WHERE cocktail_id = :q_id";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(':q_id', $q_id);
+    $statement->execute();
+    $ingredients = $statement->fetchAll(PDO::FETCH_OBJ);
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,19 +41,16 @@
         <a href="index.php">Cocktails</a>
     </header>
     <main>
-    <h1>Mojito</h1>
-    <img src="images/cocktails/mojito.png">
-    <p>De Mojito wordt gemaakt van witte rum, een halve limoen in partjes, rietsuiker en muntblaadjes en wordt afgetopt met bruiswater. Crushed ice mag bij deze cocktail niet ontbreken. Met een Mojito haal je de zomerse sfeer van Cuba in huis.</p>
+    <h1><?= $cocktail->name; ?></h1>
+    <img src="images/cocktails/<?= $cocktail->photo; ?>">
+    <?= $cocktail->description; ?>
     <h2>Ingrediënten</h2>
     <dl>
-        <dt>rietsuiker</dt>
-        <dd>2.0 theelepel</dd><dt>limoensap</dt>
-        <dd>20.0 ml</dd><dt>verse munt</dt>
-        <dd>16.0 blaadjes</dd><dt>bruiswater</dt>
-        <dd>90.0 ml</dd><dt>witte rum</dt>
-        <dd>45.0 ml</dd><dt>ijsblokjes</dt>
-        <dd>4.0 </dd>
-    </dl>    
+    <?php foreach ($ingredients as $ingredient) : ?>
+        <?php include __DIR__ . "/view/ingredient-item.php"; ?>
+    <?php endforeach; ?>
+</dl>
+   
     <h2>Recept</h2>
     Doe de suiker, limoensap, muntblaadjes en bruiswater in een hoog glas (of cocktailshaker) en kneus met een muddler. Voeg de rum en de ijsblokjes toe en schud goed. Enjoy je mojito!    
     <h2>Reviews</h2>
@@ -40,24 +65,25 @@
         <div class="user">Door: Dieter DW</div>
     </div>
     <h3>Plaats een review</h3>
-    <form>
+    <form method="POST" action="post_review.php">
         <label>
             <span>Naam</span>
-            <input type="text">
+            <input type="text" name="name">
         </label>
         <label for="email">
             <span>E-mail</span>
-            <input type="email">
+            <input type="email" name="email">
         </label>
         <label for="review">
             <span>Rating</span>
-            <input type="number" min="0" max="5" value="3">
+            <input type="number" min="0" max="5" value="3" name="rating">
         </label>
         <label for="review">
             <span>Review</span>
-            <textarea cols="30" rows="10"></textarea>
+            <textarea cols="30" rows="10" name="review"></textarea>
         </label>
         <button>Verstuur</button>
+        <input type="hidden" name="cocktail_id" value="<?= $cocktail->id; ?>">
     </form>
 
     </main>

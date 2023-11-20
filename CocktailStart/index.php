@@ -1,7 +1,14 @@
 <?php
-    include 'includes/db.php';
+    require_once __DIR__ . '/includes/db.php';
 
+    $sql = "SELECT * FROM cocktails";
+    $statement = $db->prepare($sql);
+    $statement->execute();
+    $cocktails = $statement->fetchAll(PDO::FETCH_OBJ);
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,14 +23,9 @@
     <a href="index.php">Cocktails</a>
 </header>
 <main class="cocktails">
-    <a href="/detail.html" class="cocktail">
-        <h2>Mojito</h2>
-        <img src="images/cocktails/mojito.png">
-    </a>
-    <a href="/detail.html" class="cocktail">
-        <h2>Mojito</h2>
-        <img src="images/cocktails/mojito.png">
-    </a>
+    <?php foreach ($cocktails as $cocktail) {
+        include __DIR__ . "/view/cocktail_item.php";
+    } ?>
  </main>
 </body>
 </html>
