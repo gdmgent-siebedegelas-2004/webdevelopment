@@ -1,0 +1,27 @@
+<?php
+
+$logged_in = [];
+
+array_push($logged_in);
+
+setcookie('logged in', json_encode($logged_in), time() + 3600);
+
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DeWeirdt</title>
+    <link rel="stylesheet" href="assets/main.css">
+  </head>
+  <body class="login">
+    <form>
+        <h1>Login</h1>
+        <input type="text">
+        <input type="password">
+        <button type="submit">Inloggen</button>
+    </form>
+  </body>
+</html>
