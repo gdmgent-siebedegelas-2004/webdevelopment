@@ -1,27 +1,35 @@
 <?php
+session_start();
 
-$logged_in = [];
+require_once __DIR__ . '/includes/db.php';
 
-array_push($logged_in);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-setcookie('logged in', json_encode($logged_in), time() + 3600);
+    $sql = "SELECT id, email, password FROM users WHERE email = :email";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(':email', $email);
+    $statement->execute();
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
 
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['user_id'] = $user['id'];
+}
+}
 ?>
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=1, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DeWeirdt</title>
-    <link rel="stylesheet" href="assets/main.css">
-  </head>
-  <body class="login">
-    <form>
+<head>
+    <!-- Andere head-informatie -->
+</head>
+<body class="login">
+    <form method="POST">
         <h1>Login</h1>
-        <input type="text">
-        <input type="password">
+        <input type="text" name="email" placeholder="E-mail">
+        <input type="password" name="password" placeholder="Wachtwoord">
         <button type="submit">Inloggen</button>
     </form>
-  </body>
+</body>
 </html>

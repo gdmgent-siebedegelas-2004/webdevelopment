@@ -7,6 +7,10 @@ $sql = "SELECT * FROM buttons;";
 $stmnt = $db->prepare($sql);
 $stmnt->execute();
 
+// if (condition) {
+// } else {
+// }
+
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);
 

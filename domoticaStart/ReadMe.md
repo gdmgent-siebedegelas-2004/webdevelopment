@@ -13,26 +13,6 @@ Je moet ook de status van de buttons kunnen aanpassen in de database. Dus een ve
 header('Location: ' . $_SERVER['HTTP_REFERER']);
 ```
 
----
-
----
-
----
-
----
-
----
-
----
-
----
-
----
-
----
-
----
-
 Als laatste zorg je ervoor dat de pagina's beschermd zijn door middel van een login en wachtwoord.
 
 login: info@doe.com
