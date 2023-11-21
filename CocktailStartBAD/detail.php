@@ -26,6 +26,15 @@
     $statement->bindParam(':q_id', $q_id);
     $statement->execute();
     $ingredients = $statement->fetchAll(PDO::FETCH_OBJ);
+
+    $sql = 'SELECT * FROM ratings WHERE cocktail_id = :q_id';
+
+$stmnt = $db->prepare($sql);
+//execute
+$stmnt->bindParam(':q_id', $q_id);
+$stmnt->execute();
+//fetchall
+$reviews = $stmnt->fetchAll(PDO::FETCH_OBJ);
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,16 +63,11 @@
     <h2>Recept</h2>
     Doe de suiker, limoensap, muntblaadjes en bruiswater in een hoog glas (of cocktailshaker) en kneus met een muddler. Voeg de rum en de ijsblokjes toe en schud goed. Enjoy je mojito!    
     <h2>Reviews</h2>
-    <div class="review">
-        <div class="rating">****</div>
-        <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.</div>            
-        <div class="user">Door: Dieter DW</div>
-    </div>
-    <div class="review">
-        <div class="rating">****</div>
-        <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.</div>            
-        <div class="user">Door: Dieter DW</div>
-    </div>
+    <?php
+        foreach ($reviews as $review) {
+            include __DIR__ . '/includes/review-item.php';
+        }
+        ?>
     <h3>Plaats een review</h3>
     <form method="POST" action="post_review.php">
         <label>
