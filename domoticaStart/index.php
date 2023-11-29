@@ -1,18 +1,7 @@
 <?php
 
-require_once __DIR__ . '/includes/db.php';
 
-// categories uit de querystring halen
-$sql = "SELECT * FROM categories;";
-$stmnt = $db->prepare($sql);
-$stmnt->execute();
-$categories = $stmnt->fetchAll(PDO::FETCH_OBJ);
 
-// buttons ophalen
-$sql = "SELECT * FROM buttons;";
-$stmnt = $db->prepare($sql);
-$stmnt->execute();
-$buttons = $stmnt->fetchAll(PDO::FETCH_OBJ);
 
 
 ?>

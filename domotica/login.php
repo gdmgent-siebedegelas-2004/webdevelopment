@@ -1,21 +1,20 @@
 <?php
 require 'app.php';
 
+if(isset($_POST['login'])) {
+    $login = $_POST['login'];
+    $pass = $_POST['pass'];
 
-if (isset($_POST['login'])) {
-    $email = $_POST['login'] ?? '';
-    $password = $_POST['pass'] ?? '';
+    $user = getUserByEmail($login);
 
-    $sql = "SELECT id, email, password FROM users WHERE email = :email";
-    $statement = $db->prepare($sql);
-    $statement->bindParam(':email', $email);
-    $statement->execute();
-    $user = $statement->fetch(PDO::FETCH_ASSOC);
-
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user_id'] = $user['id'];
+    if($user && password_verify($pass, $user->password)){
+        $_SESSION['user_id'] = $user->user_id;
+        header('location: index.php');
+    } else {
+        echo 'Unable to login';
+    }
 }
-}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,7 +22,7 @@ if (isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>DeWeirdt</title>
     <link rel="stylesheet" href="assets/main.css">
   </head>
   <body class="login">
