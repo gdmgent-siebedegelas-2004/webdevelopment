@@ -1,6 +1,6 @@
 <?php
 
-CONST DB_DSN = 'mysql:dbname=db;host=db;port=3306';
+CONST DB_DSN = 'mysql:dbname=db;host=db;port=9002';
 CONST DB_USER = 'root';
 CONST DB_PWD = 'root';
 

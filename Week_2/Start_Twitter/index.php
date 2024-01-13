@@ -30,6 +30,7 @@
 <body>
 <div class="container">
     <div class="messages">
+        <!-- action naar plek add_tweet.php && method op POST -->
         <form action="api/add_tweet.php" method="POST">
             <div class="message message-new">
             

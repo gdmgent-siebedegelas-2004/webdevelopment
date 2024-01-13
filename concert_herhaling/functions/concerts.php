@@ -1,5 +1,6 @@
 <?php
 
+
 function getConcerts () {
     global $db;
     $sql = "SELECT concerts.*, artists.name AS artist, locations.name as location FROM concerts
