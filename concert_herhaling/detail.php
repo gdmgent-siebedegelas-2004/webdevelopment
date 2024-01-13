@@ -1,70 +1,75 @@
 <?php
 include 'functions/concerts.php';
 include 'partials/header.php';
+
 $v_id = $_GET['q_id'];
 
-// include 'data/concerts.php';
+//include 'data/concerts.php';
+//$item = $concerts[$v_id];
+
 include 'includes/db.php';
 
 $sql = 'SELECT concerts.*, artists.name AS artist, locations.name as location FROM concerts
 JOIN artists ON concerts.artist_id = artists.artist_id
 JOIN locations ON concerts.location_id = locations.location_id WHERE concert_id = :temp_id';
 
-$statement = $db->prepare($sql);
-$statement->bindValue(':temp_id', $v_id);
-$statement->execute();
-$item = $statement->fetchObject();
+$stmnt = $db->prepare($sql);
+$stmnt->bindValue(':temp_id', $v_id);
+$stmnt->execute();
+$item = $stmnt->fetchObject();
 
-
-if (!$item) {
+if(!$item) {
     header('location: index.php');
 }
 
-if (isset ($POST['review'])) {
-    $form_review = $POST['review'];
-    $form_name =  $POST['name'] ?? '';
-    $form_email = $POST['email'];
+if( isset( $_POST['review'] ) ) {
+    $form_review = $_POST['review'];
+    $form_name = $_POST['name'] ?? '';
+    $form_email = $_POST['email'];
 
-    $insert_sql = "INSERT INTO reviews (name, email, description, concert_id)
-    VALUES (:temp_name, :temp_email, :temp_review, :concert_id);";
-    $statement = $db->prepare($sql);
-    $statement->bindValue(':temp_concert_id', $v_id);
-    $statement->bindValue(':temp_name', $form_name);
-    $statement->bindValue(':temp_email', $form_email);
-    $statement->bindValue(':temp_review', $form_review);
-    $statement->execute();}
-// print_r($result);
-// exit;
+    $insert_sql = "INSERT INTO reviews ( name, email, description, concert_id) 
+    VALUES (:temp_name, :temp_email, :temp_review, :temp_concert_id);";
+    $stmnt = $db->prepare($insert_sql);
 
-// $item = ($concerts[$v_id]);
+    $stmnt->bindValue(':temp_concert_id', $v_id);
+    $stmnt->bindValue(':temp_name', $form_name);
+    $stmnt->bindValue(':temp_email', $form_email);
+    $stmnt->bindValue(':temp_review', $form_review);
+    $stmnt->execute();
 
-if ($item) {
-    ?>
-    <h2><?= $item->title ?></h2>
-    <p>Artiest: <?= $item->artist ?></p>
-    <div>Datum: <?= $item->date ?></div>
-    <div>Locatie: <?= $item->location ?></div> 
-
-    <h2>Reviews</h2>
-<form method="post" action="">
-    <label>Naam
-        <input type="text" name="name">
-    </label>
-    <label>Email
-        <input type="email" name="email">
-    </label>
-    <label for='review'>Jouw review
-    <textarea name="review" id='review'></textarea>
-    </label>
-    <button type='submit'>Voeg je review toe</button>
-</form>
-
-
-<?php
-} else {
-    echo "Concert not found";
 }
 
 
-include 'partials/footer.php';
 ?>
+
+<h1><?= $item->title; ?></h1>
+<div><?= $item->artist; ?></div>
+<div>Datum: <?= $item->date; ?></div>
+<div>Locatie: <?= $item->location; ?></div>
+
+<h2>Reviews</h2>
+
+<form method="POST">
+    <label for="name">Naam
+        <input type="text" name="name" id="name">
+    </label>
+    <label>E-mail
+        <input type="email" name="email" required>
+    </label>
+    <label>Jouw review
+    <textarea rows="5" id="review" name="review"></textarea>
+    </label>
+    <button type="submit">Voeg review toe</button>
+</form>
+
+<h2>Nog andere</h2>
+<?php
+
+$concerts = getConcerts();
+
+foreach( $concerts as $key => $item ) {
+    //echo '<div>' . $item['artist'] . '</div>';
+    include 'views/concert_item.php';
+}
+
+include 'partials/footer.php';
